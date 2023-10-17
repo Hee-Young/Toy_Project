@@ -14,11 +14,11 @@ function startCalculate() {
     const timeResult = document.querySelector(".time_result");
     
     if(fieldValue.value == ""){
-        alert('입력되지 않았습니다.');
+        alert('분야가 입력되지 않았습니다.');
         fieldValue.focus();
         return false;
     } else if(timeValue.value == ""){
-        alert('입력되지 않았습니다.');
+        alert('시간이 입력되지 않았습니다.');
         timeValue.focus();
         return false;
     } else if(Number(timeValue.value) > 24){
@@ -30,11 +30,11 @@ function startCalculate() {
     loading.style.display = "flex";
 
     setTimeout(function() {
-        loading.style.display = "none";
-        result.style.display = "flex";
         fieldResult.innerText = fieldValue.value;
         timeResult.innerText = parseInt((10000/Number(timeValue.value)), 10);
-    }, 1800);   
+        loading.style.display = "none";
+        result.style.display = "flex";
+    }, 1800/* 1.8초 */);   
 }
 
 function openModal() {
