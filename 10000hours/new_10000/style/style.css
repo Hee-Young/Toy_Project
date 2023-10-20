@@ -112,7 +112,7 @@
 }
 
 
-.cont-inp .btn-exc, .btn-go, .btn-share{
+.cont-inp .btn-exc, .btn-go, .btn-share, .pop-up .btn-close{
     padding:21px 49px;
     margin-bottom:150px;
     font-size: 24px;
@@ -169,24 +169,18 @@
     width: 800px;
     height: 800px;
     background-color: #fff;
+    margin:0 auto;
 }
 
 .pop-up .img-popup{
+    margin: auto;
     width: 433px;
     height: 516px;
 }
 
-.pop-up .btn-close{
-    padding:21px 49px;
-    margin-bottom:150px;
-    font-size: 24px;
-    line-height: 24px;
-    font-family: GmarketSansBold;
-    color:#5B2386;
-    background-color: #FCEE21;
-    border-radius: 56px;
-    cursor:pointer;
-    border:none;
+.pop-up .txt-close{
+    color: black;
+    font-size: 13px;
 }
 
 .cont-footer{
@@ -201,7 +195,7 @@
     margin:0 auto 20px;
 }
 
-@media screen and (max-width:360px){
+/* @media screen and (max-width:360px){
     #app{
         padding:0 24px 32px;
     }
@@ -271,9 +265,18 @@
     .cont-result .txt-wannabe, .cont-result .txt-time{
         line-height:14px;
     }
-    .cont-inp .btn-exc, .btn-go, .btn-share{
+    .cont-inp .btn-exc, .btn-go, .btn-share {
         font-size:14px;
         padding:12px 17px;
+    }
+    .pop-up{
+        width: 800px;
+        height: 800px;
+    }
+    
+    .pop-up .img-popup{
+        width: 433px;
+        height: 516px;
     }
     .btn-share{
         margin-left:14px;
@@ -302,4 +305,4 @@
         margin-bottom:83px;
     }
     
-}
+} */
