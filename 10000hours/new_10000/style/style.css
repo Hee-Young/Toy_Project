@@ -21,6 +21,15 @@
     url("https://fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Regular.otf") format('opentype');
 }
 
+@keyframes rotate {
+    /* 50% {
+        transform: rotate(180deg);
+    } */
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
 #app{
     font-family: GmarketSansMedium;
     background-color: #5b2386;
@@ -141,6 +150,17 @@
     background-image: url("../img/hand.png");
 }
 
+.cont-loading {
+    display: none;
+    justify-content: center;
+    margin-bottom: 80px;
+}
+.cont-loading .loading-clock {
+    width: 100px;
+    height: 100px;
+    animation: rotate 1.1s infinite linear;
+}
+
 .cont-result .txt-wannabe, .cont-result .txt-time{
     line-height:68px;
 }
@@ -166,14 +186,17 @@
 }
 
 .pop-up{
+    position: fixed;
     display: none;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* 위의 3줄 : 화면 가운데 팝업되도록 하는 코드 */
+    z-index: 999;
     width: 800px;
     height: 800px;
-    overflow: hidden; 
-    background-color: #fff;
-    align-items: center;
-    border-radius: 30px;
-    margin:0 auto;
+    background-color: #FFF;
+    border-radius: 20px;
 }
 
 .pop-up .img-popup{

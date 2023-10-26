@@ -1,10 +1,10 @@
-const startButton = document.querySelector("btn-exc");
-const openButton = document.querySelector("btn-go");
+const startButton = document.querySelector(".btn-exc");
+const openButton = document.querySelector(".btn-go");
 const closeButton = document.querySelector(".btn-close");
 const shareButton = document.querySelector(".btn-share");
 const result = document.querySelector(".cont-result");
 const popup = document.querySelector(".pop-up");
-// const loading = document.querySelector(".result_loading");
+const loading = document.querySelector(".cont-loading");
 
 function startCalculate() {
     const fieldValue = document.querySelector("#field_value");
@@ -13,24 +13,32 @@ function startCalculate() {
     const fieldResult = document.querySelector(".field_result");
     const timeResult = document.querySelector(".time_result");
     
-    if(Number(timeValue.value) > 24){
+    if(timeValue.value == ""){
+        //timeValue.focus();
+        return false;
+    }
+    else if(fieldValue.value == ""){
+        //fieldValue.focus();
+        return false;
+    } 
+    else if(Number(timeValue.value) > 24){
         alert('잘못된 값입니다. 24이하의 값을 입력해 주세요.');
         return false;
     }
 
     result.style.display = "none";
-    //loading.style.display = "flex";
+    loading.style.display = "flex";
 
     setTimeout(function() {
+        loading.style.display = "none";
+        result.style.display = "block";
         fieldResult.innerText = fieldValue.value;
         timeResult.innerText = parseInt((10000/Number(timeValue.value)), 10);
-        //loading.style.display = "none";
-        result.style.display = "flex";
     }, 1800/* 1.8초 */);   
 }
 
 function openPopup() {
-    popup.style.display = "flex";
+    popup.style.display = "block";
 }
 
 function closePopup() {
