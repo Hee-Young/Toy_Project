@@ -1,6 +1,6 @@
 const leftScore = document.querySelector("#scoreL");
 const rightScore = document.querySelector("#scoreR");
-const winScore = document.querySelector("#winScore");
+const selectWinScore = document.querySelector("#winScore");
 const p1Button = document.querySelector("#player1");
 const p2Button = document.querySelector("#player2");
 const resetButton = document.querySelector("#reset");
@@ -29,14 +29,23 @@ p2Button.addEventListener('click', function(){
     }
 })
 resetButton.addEventListener('click', function() {
+    reset();
+})
+
+selectWinScore.addEventListener('change', function () {
+    winningScore = parseInt(this.value);
+    reset();
+})
+
+function finish() {
+    isFinish = true;
+}
+
+function reset() {
     isFinish = false;
     p1Score = 0;
     p2Score = 0;
 
     leftScore.textContent = p1Score;
     rightScore.textContent = p2Score;
-})
-
-function finish() {
-    isFinish = true;
 }
