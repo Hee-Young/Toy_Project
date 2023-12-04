@@ -11,21 +11,21 @@ let winningScore = 5;
 let isFinish = false;
 
 p1Button.addEventListener('click', function(){
-    if(p1Score != winningScore){
+    if(!isFinish){
         p1Score += 1;
         leftScore.textContent = p1Score;
-    }
-    else{
-        finish();
+        if(p1Score == winningScore){        
+            finish(leftScore);
+        }
     }
 })
 p2Button.addEventListener('click', function(){
-    if(p2Score != winningScore){
+    if(!isFinish){
         p2Score += 1;
         rightScore.textContent = p2Score;
-    }
-    else{
-        finish();
+        if(p2Score == winningScore){        
+            finish(rightScore);
+        }
     }
 })
 resetButton.addEventListener('click', function() {
@@ -37,15 +37,28 @@ selectWinScore.addEventListener('change', function () {
     reset();
 })
 
-function finish() {
+function finish(winButton) {
     isFinish = true;
+    p1Button.disabled = true;
+    p2Button.disabled = true;
+    if(winButton == leftScore){
+        leftScore.classList.add('win');
+        rightScore.classList.add('lose');
+    }
+    else{
+        rightScore.classList.add('win');
+        leftScore.classList.add('lose');
+    }
 }
 
 function reset() {
     isFinish = false;
-    p1Score = 0;
+    p1Score = 0; // 점수 리셋
     p2Score = 0;
-
     leftScore.textContent = p1Score;
     rightScore.textContent = p2Score;
+    rightScore.classList.remove('win', 'lose'); // 점수 색 리셋 되도록
+    leftScore.classList.remove('win', 'lose');
+    p1Button.disabled = false; // button disable 풀어주기
+    p2Button.disabled = false;
 }
