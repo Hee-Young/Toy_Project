@@ -1,32 +1,41 @@
-const leftScore = document.querySelector("#scoreL");
-const rightScore = document.querySelector("#scoreR");
+const player1 = {
+    score : 0,
+    button : document.querySelector("#player1"),
+    text : document.querySelector("#scoreL")
+}
+
+const player2 = {
+    score : 0,
+    button : document.querySelector("#player2"),
+    text : document.querySelector("#scoreR")
+}
+
 const selectWinScore = document.querySelector("#winScore");
-const p1Button = document.querySelector("#player1");
-const p2Button = document.querySelector("#player2");
 const resetButton = document.querySelector("#reset");
 
-let p1Score = 0;
-let p2Score = 0;
 let winningScore = 5;
 let isFinish = false;
 
-p1Button.addEventListener('click', function(){
+function updateScores(player, opponent){
     if(!isFinish){
-        p1Score += 1;
-        leftScore.textContent = p1Score;
-        if(p1Score == winningScore){        
-            finish(leftScore);
+        player.score += 1;
+        player.text.textContent = player.score;
+        if(player.score == winningScore){        
+            isFinish = true;
+            player.button.disabled = true;
+            opponent.button.disabled = true;
+            player.text.classList.add('win');
+            opponent.text.classList.add('lose');
         }
     }
+}
+
+player1.button.addEventListener('click', function(){
+    updateScores(player1, player2);
 })
-p2Button.addEventListener('click', function(){
-    if(!isFinish){
-        p2Score += 1;
-        rightScore.textContent = p2Score;
-        if(p2Score == winningScore){        
-            finish(rightScore);
-        }
-    }
+
+player2.button.addEventListener('click', function(){
+    updateScores(player2, player1);
 })
 resetButton.addEventListener('click', function() {
     reset();
@@ -37,28 +46,14 @@ selectWinScore.addEventListener('change', function () {
     reset();
 })
 
-function finish(winButton) {
-    isFinish = true;
-    p1Button.disabled = true;
-    p2Button.disabled = true;
-    if(winButton == leftScore){
-        leftScore.classList.add('win');
-        rightScore.classList.add('lose');
-    }
-    else{
-        rightScore.classList.add('win');
-        leftScore.classList.add('lose');
-    }
-}
-
 function reset() {
     isFinish = false;
-    p1Score = 0; // 점수 리셋
-    p2Score = 0;
-    leftScore.textContent = p1Score;
-    rightScore.textContent = p2Score;
-    rightScore.classList.remove('win', 'lose'); // 점수 색 리셋 되도록
-    leftScore.classList.remove('win', 'lose');
-    p1Button.disabled = false; // button disable 풀어주기
-    p2Button.disabled = false;
+    player1.score = 0; // 점수 리셋
+    player2.score = 0;
+    player1.text.textContent = player1.score;
+    player2.text.textContent = player2.score;
+    player1.text.classList.remove('win', 'lose'); // 점수 색 리셋 되도록
+    player2.text.classList.remove('win', 'lose');
+    player1.button.disabled = false; // button disable 풀어주기
+    player2.button.disabled = false;
 }
